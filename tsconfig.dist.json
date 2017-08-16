@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "target": "es5",
+    "module": "amd",
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom"]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/aurelia-mdc-pages-animator/**/*.ts"
+  ]
+}

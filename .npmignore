@@ -1,0 +1,20 @@
+# ignore sourcecode
+/src
+
+# general project files
+/aurelia_project
+/tsconfig.json
+/tsconfig.dist.json
+/tslint.json
+/aurelia-mdc-pages-animator*.tgz
+/favicon.ico
+/index.html
+/docs
+
+# ignore other project files
+/.editorconfig
+/.gitignore
+/.npmignore
+/.npmrc
+/.vscode
+/scripts

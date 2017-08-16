@@ -1,0 +1,194 @@
+<template>
+  <div class="pages pages-first pages-fade au-animate">
+    <mdc-toolbar class="mdc-theme--dark">
+      <mdc-toolbar-row>
+        <mdc-toolbar-section start="true">
+          <mdc-toolbar-title>
+              <a href="#/">Home</a>
+          </mdc-toolbar-title>
+        </mdc-toolbar-section>
+        <mdc-toolbar-section end="true">
+            <a mdc-button href="#/detail-page1">detail</a>
+            <a mdc-button href="#/fade-page1">fade</a>
+            <a mdc-button href="#/tab-page1">tab</a>
+        </mdc-toolbar-section>
+      </mdc-toolbar-row>
+    </mdc-toolbar>
+
+    <section>
+
+      <h1>aurelia-mdc-pages-animator</h1>
+      <p>Simple attribute to put on <strong>router-view</strong> to add back and forward classes during navigation. Primary build for <strong>aurelia-mdc-bridge</strong> but should also work for other Aurelia projects.</p>
+      <p>The attribute will store a history and determine if router has navigated forward or back in router history.</p>
+      <p>It will also listen to DOM events raised by <strong>aurelia-animator-css</strong> and hide scrollbars during animation. After animation the event <strong>on-animation-done</strong> is raised.</p>
+      <p>There is also some experimental animations included. Use menu in toolbar to see how they behave.</p>
+      <br>
+  
+      <h4>Getting started</h4>
+
+      <p>Aurelia cli</p>
+      <span>1. Create a new or use an existing project with aurelia-cli.</span><br>
+      <span>2. Add some pages and navigation between them.</span><br>
+      <span>3. Install and configure <strong>aurelia-animator-css</strong>.</span><br><br>
+      <span>Note! Before <strong>aurelia-animator-css</strong> > <strong>1.0.2</strong> is out, ripple effect will destroy animations. Until then a version is available here: <pre><code>npm install ullfis/animator-css</code></pre></span><br>
+      <span>4. Install:</span>
+      <pre>
+        <code-prism language="batch">au install aurelia-mdc-pages-animator</code-prism>
+      </pre>
+      <span>5. Register the plugin in your <strong>main.js</strong> in src folder:</span>
+      <pre>
+        <code-prism language="javascript">
+            export function configure(aurelia) {
+              ...
+                aurelia.use.plugin('aurelia-mdc-pages-animator');
+              ...
+            }
+        </code-prism>
+      </pre>      
+      <span>6. Require css in your <strong>app.html</strong> and put attribute on <strong>router-view</strong>:</span>
+      <pre>
+        <code-prism language="html">
+          ...
+          &lt;require from="aurelia-mdc-pages-animator/pages.css"&gt;&lt;/require&gt;
+          &lt;router-view swap-order="with" aurelia-mdc-pages-animator&gt;&lt;/router-view&gt;
+          ...
+        </code-prism>
+      </pre>
+
+      <span>7. Decorate your pages with animation classes:</span>
+      <pre>
+        <code-prism language="html">
+          &lt;template&gt;
+            &lt;div class="pages pages-detail au-animate"&gt;
+              ...
+            &lt;/div&gt;
+          &lt;/template&gt;
+        </code-prism>
+      </pre>
+
+      <br>
+      <h4>Classes</h4>
+      <p>These page animations is experimental and not super perfect ;) I would love to get feedback and/or suggestions or pull requests.</p>
+      <p>It`s included 3 animation classes:</p>
+      <ul>
+        <li>pages-detail</li>
+        <li>pages-fade</li>
+        <li>pages-tab</li>
+      </ul>
+      <p>To use <strong>pages-tab</strong> just change page classes to:</p>
+      <pre>
+        <code-prism language="html">
+          &lt;template&gt;
+            &lt;div class="pages pages-tab au-animate"&gt;
+              ...
+            &lt;/div&gt;
+          &lt;/template&gt;
+        </code-prism>
+      </pre>
+      
+      <br>
+      <h4>Stop animation when enter first page</h4>
+      <p>To stop <strong>enter</strong> animation add <strong>pages-first</strong> class:</p>
+      <pre>
+        <code-prism language="html">
+          &lt;template&gt;
+            &lt;div class="pages pages-first pages-tab au-animate"&gt;
+              ...
+            &lt;/div&gt;
+          &lt;/template&gt;
+        </code-prism>
+      </pre>
+
+      <br>
+      <h4>Transparent pages during animation?</h4>
+      <p>You need a background color on <strong>pages</strong> class. Put this somewhere:</p>
+      <pre>
+        <code-prism language="css">
+          .pages {
+            background: #fff;
+          
+            // other optional stylings.
+            padding-left: 0;
+            padding-right: 0;
+          }          
+        </code-prism>
+      </pre>
+
+      <br>
+      <h4>SASS</h4>
+      <p>scss files is included</p>
+      <pre>
+        <code-prism language="css">
+          @import "aurelia-mdc-pages-animator/pages.scss";
+        </code-prism>
+      </pre>
+      <p>You need these projects installed to use sass:</p>
+      <pre>
+        <code-prism language="batch">      
+          npm install @material/elevation
+          npm install @material/animation
+        </code-prism>
+      </pre>
+
+      <p>You can change some variables before importing:</p>
+      <pre>
+        <code-prism language="css">
+          // elevation is for detail and tab animations
+          $elevation--enter: 1;
+          $elevation--leave: 0;
+
+          $tablet-width: 480px;
+          $desktop-width: 840px;          
+          
+          $animate-speed-detail--phone: 0.375s;
+          $animate-speed-detail--tablet: 0.487s;
+          $animate-speed-detail--desktop: 0.15s;
+          
+          $animate-speed-fade--phone: 0.487s;
+          $animate-speed-fade--tablet: 0.599s;
+          $animate-speed-fade--desktop: 0.375s;
+          
+          $animate-speed-tab--phone: 0.375s;
+          $animate-speed-tab--tablet: 0.487s;
+          $animate-speed-tab--desktop: 0.15s;
+
+          @import "aurelia-mdc-pages-animator/pages.scss";
+        </code-prism>
+      </pre>
+
+      <p>includes for different screen size:</p>
+      <pre>
+        <code-prism language="css">
+          section {
+            /* 
+            * PHONE
+            */
+            padding: 2px;
+            ...
+            
+            /* 
+            * TABLET
+            */
+            @include tablet {
+              padding: 8px;
+              ...
+            }
+            
+            /* 
+            * DESKTOP
+            */
+            @include desktop {
+              padding: 16px;
+              ...
+            }
+          }
+        </code-prism>
+      </pre>
+        
+      <br>
+      <h4>Source</h4>
+      <p><a target="_blank" href="https://github.com/Ullfis/aurelia-mdc-pages-animation">GitHub: https://github.com/Ullfis/aurelia-mdc-pages-animation</a></p>
+      
+    </section>
+  </div>
+</template>

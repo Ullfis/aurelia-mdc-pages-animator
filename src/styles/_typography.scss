@@ -1,0 +1,17 @@
+@import "@material/typography/_mixins";
+
+body {
+  @include mdc-typography(body1);
+}
+h1 {
+  @include mdc-typography(display1);
+  @include mdc-typography-adjust-margin(display1);
+  margin-bottom: 2rem;
+}
+h4 {
+  @include mdc-typography(headline);
+  @include mdc-typography-adjust-margin(headline);
+}
+strong {
+  @include mdc-typography(body2);
+}

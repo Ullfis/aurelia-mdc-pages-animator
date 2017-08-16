@@ -1,0 +1,128 @@
+{
+  "name": "aurelia-mdc-pages-animator",
+  "description": "Add back and forward classes to router-view and some classes for page animation.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ullfis/aurelia-mdc-pages-animator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ullfis/aurelia-mdc-pages-animator/issues"
+  },
+  "homepage": "https://github.com/ullfis/aurelia-mdc-pages-animator",
+  "license": "MIT",
+  "author": {
+    "name": "Ullfis",
+    "email": "",
+    "url": "https://github.com/ullfis"
+  },
+  "main": "dist/amd/index.js",
+  "typings": "dist/amd/index.d.ts",
+  "scripts": {
+    "start": "au run -w",
+    "lint": "cross-env tslint --project tsconfig.json",
+    "___BUILD___": "---- BUILD DIST ----",
+    "build": "concurrently \"npm run build:amd\" \"npm run build:commonjs\" \"npm run build:es2015\" \"npm run build:es2017\" \"npm run build:native-modules\" \"npm run build:system\" \"npm run build:scss\"",
+    "prebuild": "cross-env rimraf dist",
+    "build:amd": "cross-env tsc --project tsconfig.dist.json --outDir dist/amd --module amd",
+    "build:commonjs": "cross-env tsc --project tsconfig.dist.json --outDir dist/commonjs --module commonjs",
+    "build:es2017": "cross-env tsc --project tsconfig.dist.json --outDir dist/es2017 --module es2015 --target es2017",
+    "build:es2015": "cross-env tsc --project tsconfig.dist.json --outDir dist/es2015 --module es2015 --target es2015",
+    "build:native-modules": "cross-env tsc --project tsconfig.dist.json --outDir dist/native-modules --module es2015",
+    "build:system": "cross-env tsc --project tsconfig.dist.json --outDir dist/system --module system",
+    "build:scss": "au build-dist-scss",
+    "___RELEASE___": "---- BUILD DIST, BUMP VERSION, CREATE CHANGELOG AND ADD CHANGES TO GIT ----",
+    "prerelease": "npm run build",
+    "release": "git add -A",
+    "postrelease": "standard-version -a",
+    "___DOCS___": "---- BUILD DOCS ----",
+    "predocs": "rimraf scripts",
+    "docs": "au build --env prod",
+    "postdocs": "npm run builddocs",
+    "prebuilddocs": "rimraf docs",
+    "builddocs": "au build-docs"
+  },
+  "dependencies": {
+    "aurelia-logging": "^1.3.1",
+    "aurelia-pal": "^1.3.0",
+    "aurelia-templating": "^1.4.2"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@types/node": "^8.0.22",
+    "aurelia-animator-css": "github:ullfis/animator-css",
+    "aurelia-bootstrapper": "^2.1.1",
+    "aurelia-cli": "^0.30.1",
+    "aurelia-mdc-bridge": "^0.7.0",
+    "aurelia-tools": "^1.0.0",
+    "bluebird": "^3.4.1",
+    "browser-sync": "^2.18.13",
+    "concurrently": "^3.5.0",
+    "connect-history-api-fallback": "^1.3.0",
+    "cross-env": "^5.0.5",
+    "debounce": "^1.0.2",
+    "event-stream": "^3.3.4",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-changed-in-place": "^2.2.0",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-tslint": "^8.1.2",
+    "gulp-typescript": "^3.2.1",
+    "gulp-watch": "^4.3.11",
+    "html-minifier": "^3.5.3",
+    "minimatch": "^3.0.4",
+    "prismjs": "^1.6.0",
+    "requirejs": "^2.3.2",
+    "rimraf": "^2.6.1",
+    "text": "github:requirejs/text#latest",
+    "through2": "^2.0.3",
+    "tslint": "^5.6.0",
+    "typescript": "^2.4.2",
+    "uglify-js": "^2.6.3",
+    "vinyl-fs": "^2.4.4"
+  },
+  "packageImporter": "https://github.com/aurelia/cli/pull/454",
+  "aurelia": {
+    "import": {
+      "dependencies": [
+        {
+          "name": "aurelia-mdc-pages-animator",
+          "path": "../node_modules/aurelia-mdc-pages-animator/dist/amd",
+          "main": "index",
+          "resources": [
+            "index.js",
+            "aurelia-mdc-pages-animator.js",
+            "pages.css"
+          ]
+        }
+      ],
+      "tutorial": [
+        "",
+        "1. in main.js add:",
+        "     aurelia.use.plugin('aurelia-mdc-pages-animator')",
+        "",
+        "   remember to also add plugin 'aurelia-animator-css'",
+        "",
+        "2. in app.html add the following:",
+        "     <require from=\"aurelia-mdc-pages-animator/pages.css\"></require>",
+        "     <router-view swap-order=\"with\" aurelia-mdc-pages-animator></router-view>",
+        "",
+        "3. add classes to your pages:",
+        "     <template>",
+        "       <div class=\"pages pages-detail au-animate\">",
+        "         ...",
+        "",
+        "more information:",
+        " https://github.com/ullfis/aurelia-mdc-pages-animator",
+        "",
+        ""
+      ]
+    }
+  }
+}

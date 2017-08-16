@@ -1,0 +1,45 @@
+@import "./styles/material";
+
+$mdc-theme-primary: #4654B7;
+$mdc-theme-accent: #4FAD44;
+$mdc-theme-background: #fff;
+@import "@material/theme/mdc-theme";
+
+@import "./styles/typography";
+@import "./styles/icons";
+@import "./styles/prism.scss";
+
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+main {
+  padding: 0;
+}
+
+section {
+  padding: 8px;
+}
+
+pre {
+  margin: 0;
+}
+
+.mdc-toolbar {
+  .mdc-toolbar__title a {
+    text-decoration: none;
+    // color: $mdc-theme-background;
+    color: var(--mdc-theme-text-primary-on-dark, $mdc-theme-background);
+  }
+}
+
+.pages {
+  background: $mdc-theme-background;
+
+  // no padding
+  padding-left: 0;
+  padding-right: 0;
+}
