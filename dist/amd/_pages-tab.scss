@@ -1,0 +1,97 @@
+@import "_variables";
+@import "@material/elevation/_mixins";
+@import "@material/animation/_functions";
+
+// FORWARD
+@keyframes goForwardTabEnter {
+  from {
+    transform: translate(100%, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes goForwardTabLeave {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-5%, 0);
+  }
+}
+
+// BACK
+@keyframes goBackTabEnter {
+  from {
+    transform: translate(-5%, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes goBackTabLeave {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+@mixin go-pages-tab($speed) {
+
+  // FORWARD
+  .go-forward {
+    .pages.pages-tab {
+
+      &.au-enter:not(.pages-first) {
+        transform: translate(100%, 0);
+        z-index: 1;
+        
+        &.au-enter-active {
+          @include mdc-elevation($elevation--enter);
+          z-index: 1;
+          animation: mdc-animation-enter(goForwardTabEnter, $speed);
+        }
+      }
+
+      &.au-leave {
+        transform: translate(0, 0);
+        z-index: 0;
+
+        &.au-leave-active {
+          @include mdc-elevation($elevation--leave);
+          z-index: 0;
+          animation: mdc-animation-exit-permanent(goForwardTabLeave, $speed);
+        }
+      }
+    }
+  }
+
+  // BACK
+  .go-back {
+    .pages.pages-tab {
+
+      &.au-enter {
+        transform: translate(-5%, 0);
+        z-index: 0;
+
+        &.au-enter-active {
+          @include mdc-elevation($elevation--leave);
+          z-index: 0;
+          animation: mdc-animation-enter(goBackTabEnter, $speed);
+        }
+      }      
+
+      &.au-leave {
+        transform: translate(0%, 0);
+
+        &.au-leave-active {
+          @include mdc-elevation($elevation--enter);
+          z-index: 1;
+          animation: mdc-animation-exit-permanent(goBackTabLeave, $speed);
+        }
+      }
+    }
+  }
+}

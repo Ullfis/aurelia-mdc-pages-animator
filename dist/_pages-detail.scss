@@ -1,0 +1,97 @@
+@import "_variables";
+@import "@material/elevation/_mixins";
+@import "@material/animation/_functions";
+
+// FORWARD
+@keyframes goForwardDetailEnter {
+  from {
+    transform: translate(0, 100%);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes goForwardDetailLeave {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+// BACK
+@keyframes goBackDetailEnter {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+@keyframes goBackDetailLeave {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, 100%);
+  }
+}
+
+@mixin go-pages-detail($speed) {
+
+  // FORWARD
+  .go-forward {
+    .pages.pages-detail {
+
+      &.au-enter:not(.pages-first) {
+        transform: translate(0, 100%);
+        z-index: 1;
+        
+        &.au-enter-active {
+          @include mdc-elevation($elevation--enter);
+          z-index: 1;
+          animation: mdc-animation-enter(goForwardDetailEnter, $speed);
+        }
+      }
+
+      &.au-leave {
+        transform: translate(0, 0);
+        z-index: 0;
+
+        &.au-leave-active {
+          @include mdc-elevation($elevation--leave);
+          z-index: 0;
+          animation: mdc-animation-exit-permanent(goForwardDetailLeave, $speed);
+        }
+      }
+    }
+  }
+
+  // BACK
+  .go-back {
+    .pages.pages-detail {
+
+      &.au-enter {
+        transform: translate(0, 0);
+        z-index: 0;
+
+        &.au-enter-active {
+          @include mdc-elevation($elevation--leave);
+          z-index: 0;
+          animation: mdc-animation-enter(goBackDetailEnter, $speed);
+        }
+      }      
+
+      &.au-leave {
+        transform: translate(0%, 0);
+
+        &.au-leave-active {
+          @include mdc-elevation($elevation--enter);
+          z-index: 1;
+          animation: mdc-animation-exit-permanent(goBackDetailLeave, $speed);
+        }
+      }
+    }
+  }
+}

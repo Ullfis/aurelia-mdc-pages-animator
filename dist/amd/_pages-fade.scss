@@ -1,0 +1,58 @@
+@import "_variables";
+@import "@material/elevation/_mixins";
+@import "@material/animation/_functions";
+
+@keyframes fadeInPages {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOutPages {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@mixin go-pages-fade($speed) {
+
+  // FORWARD
+  .go-forward {
+    .pages.pages-fade {
+
+      &.au-enter:not(.pages-first) {
+        opacity: 0!important;
+        
+        &.au-enter-active {
+          animation: mdc-animation-enter(fadeInPages, $speed);
+        }
+      }
+
+      &.au-leave {
+
+        &.au-leave-active {
+          animation: mdc-animation-exit-permanent(fadeOutPages, $speed);
+        }
+      }
+    }
+  }
+
+  // BACK
+  .go-back {
+    .pages.pages-fade {
+
+      &.au-enter {
+        opacity: 0!important;
+
+        &.au-enter-active {
+          animation: mdc-animation-enter(fadeInPages, $speed);
+        }
+      }      
+
+      &.au-leave {
+
+        &.au-leave-active {
+          animation: mdc-animation-exit-permanent(fadeOutPages, $speed);
+        }
+      }
+    }
+  }
+}
