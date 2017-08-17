@@ -34,6 +34,8 @@ export function configure(aurelia) {
 
 also remember to install and configure `aurelia-animator-css`
 
+> **Note!** Before `aurelia-animator-css` **>** version `1.0.2` is out, ripple effect will destroy animations. Until then a version is available here: `npm install ullfis/animator-css`
+
 app.html:
 
 ```html
