@@ -8,7 +8,7 @@ _This plugin is in active development and your feedback is welcome_
 
 Simple attribute to use on `router-view` to add `back` and `forward` classes during navigation in [Aurelia](http://aurelia.io) projects.
 
-The attribute will store a history and determine if router has navigated forward or back to previous route.
+The attribute will store a history and determine if router has navigated forward or back to previous routes.
 
 It will also listen to DOM events raised by [aurelia-animator-css](https://github.com/aurelia/animator-css) and hide scrollbars during animation. After animation the event `on-animation-done` is raised.
 
@@ -39,7 +39,7 @@ also remember to install and configure [aurelia-animator-css](https://github.com
   aurelia.use.plugin('aurelia-animator-css');
 ```
 
-> **Note!** Before `aurelia-animator-css` **>** version `1.0.2` is out, ripple effect will destroy animations. Until then a version is available here: `npm install ullfis/animator-css`
+> **Note!** Before `aurelia-animator-css` version **>** `1.0.2` is out, ripple effect will destroy animations. Until then a version is available here: `npm install ullfis/animator-css`
 
 app.html:
 
